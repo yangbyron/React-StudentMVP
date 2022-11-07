@@ -20,9 +20,17 @@ app.get('/api/wallet',(req,res)=>{
         res.send(result.rows)
     })
 });
-app.get('/api/wallet/sum',(req,res)=>{
-    console.log('Sending sum back...');
+app.get('/api/wallet/categorysum',(req,res)=>{
+    console.log('Sending category sum back...');
     client.query('select category, round(CAST(sum(amount)/(select sum(amount) from current_month_spending)*100 as numeric),2) as amount from current_month_spending group by category;')
+    .then(result=>{
+        console.log('success!');
+        res.send(result.rows);
+    })
+});
+app.get('/api/wallet/sum',(req,res)=>{
+    console.log('Sending total spending back...');
+    client.query('select sum(amount) as total from current_month_spending;')
     .then(result=>{
         console.log('success!');
         res.send(result.rows);

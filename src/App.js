@@ -9,8 +9,10 @@ function App() {
   const [spendings,setSpendings]=useState([]);
   const [oldSpendings,setOldSpendings]=useState([]);  
   const [isAddClicked,setIsAddClicked]=useState(false);
-  const [sumOfData,setSumOfData]=useState([]);
-  const [oldSumOfData,setOldSumOfData]=useState([]);
+  const [sumOfCategory,setSumOfCategory]=useState([]);
+  const [oldSumOfCategory,setOldSumOfCategory]=useState([]);
+  const[totalSpending,setTotalSpending]=useState('');
+  const[oldTotalSpending,setOldTotalSpending]=useState('');
   const URL = 'http://localhost:3002/api/wallet';
   // const URL = 'http';
   function handleAddClick(){
@@ -18,7 +20,8 @@ function App() {
   }
   function handleDelete(){
     setOldSpendings(spendings);
-    setOldSumOfData(sumOfData);
+    setOldSumOfCategory(sumOfCategory);
+    setOldTotalSpending(totalSpending);
   }
   useEffect(()=>{
     fetch(URL)
@@ -26,10 +29,15 @@ function App() {
     .then(data=>setSpendings(data))
   },[oldSpendings]);
   useEffect(()=>{
+    fetch(URL+'/categorysum')
+    .then(res=>res.json())
+    .then(data=>setSumOfCategory(data))
+  },[oldSumOfCategory]);
+  useEffect(()=>{
     fetch(URL+'/sum')
     .then(res=>res.json())
-    .then(data=>setSumOfData(data))
-  },[oldSumOfData]);
+    .then(data=>setTotalSpending(data[0].total))
+  },[oldTotalSpending]);
 
   if(isAddClicked){
     return <AddSpending URL={URL}/>
@@ -38,10 +46,10 @@ function App() {
       <div className="App">
         <Tab/>
         <div className="wrapper">
-        <CurrentMonthSpending spendings={spendings} deleteSpending={handleDelete}/>
+        <CurrentMonthSpending total={totalSpending} spendings={spendings} deleteSpending={handleDelete}/>
         <button className="addButton" onClick={handleAddClick}>Add Spending</button>
         </div>
-        <DisplayChart sumOfData={sumOfData}/>
+        <DisplayChart sumOfData={sumOfCategory}/>
       </div>
     );
   }

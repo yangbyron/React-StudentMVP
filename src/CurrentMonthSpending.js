@@ -5,7 +5,7 @@ const CurrentMonthSpending=(props)=>{
     return(
         <table className="spending-header">
             <tbody>
-            <tr key={'f'}>
+            <tr>
                 <th>Category</th>
                 <th>Amount</th>
                 <th>Description</th>
@@ -15,6 +15,10 @@ const CurrentMonthSpending=(props)=>{
             {props.spendings.map(eachSpending =>{
                     return <EachSpending spending={eachSpending} key={eachSpending.id} click={props.click} deleteSpending={props.deleteSpending}/>
             })}
+            <tr>
+                <td>{'Total Spending:'}</td>
+                <td colSpan='75%'>{props.total}</td>
+            </tr>
             </tbody>
         </table>
     )
