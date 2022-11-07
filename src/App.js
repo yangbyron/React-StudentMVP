@@ -37,7 +37,7 @@ function App() {
       <div className="App">
         <Tab/>
         <CurrentMonthSpending spendings={spendings} deleteSpending={handleDelete}/>
-        <button onClick={handleAddClick}>Add Spending</button>
+        <button className="addButton" onClick={handleAddClick}>Add Spending</button>
         <DisplayChart sumOfData={sumOfData}/>
       </div>
     );
