@@ -31,6 +31,7 @@ const AddSpending=(props)=>{
             <select name="category" required onChange={handleChange}>
                 <option value=''>Category</option>
                 <option value='monthly bill'>Monthly Bill</option>
+                <option value='gas'>Gas</option>
                 <option value='grocery'>Grocery</option>
                 <option value='food'>Food</option>
                 <option value='subscription'>Subscription</option>

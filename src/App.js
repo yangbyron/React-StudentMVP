@@ -7,6 +7,7 @@ import Tab from "./Tab";
 function App() {
   const [spendings,setSpendings]=useState([]);
   const [isAddClicked,setIsAddClicked]=useState(false);
+  const [sumOfData,setSumOfData]=useState([]);
   const URL = 'http://localhost:3002/api/wallet';
   // const URL = 'http';
   function handleAddClick(){
@@ -20,7 +21,12 @@ function App() {
     fetch(URL)
     .then(res=>res.json())
     .then(data=>setSpendings(data))
-  },[spendings])
+  },[spendings]);
+  useEffect(()=>{
+    fetch(URL+'/sum')
+    .then(res=>res.json())
+    .then(data=>setSumOfData(data))
+  },[spendings]);
 
   if(isAddClicked){
     return <AddSpending URL={URL}/>
@@ -30,7 +36,7 @@ function App() {
         <Tab/>
         <CurrentMonthSpending spendings={spendings} deleteSpending={handleDelete}/>
         <button onClick={handleAddClick}>Add Spending</button>
-        <DisplayChart/>
+        <DisplayChart sumOfData={sumOfData}/>
       </div>
     );
   }
