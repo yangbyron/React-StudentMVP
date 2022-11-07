@@ -6,27 +6,29 @@ import Tab from "./Tab";
 
 function App() {
   const [spendings,setSpendings]=useState([]);
+  const [oldSpendings,setOldSpendings]=useState([]);  
   const [isAddClicked,setIsAddClicked]=useState(false);
   const [sumOfData,setSumOfData]=useState([]);
+  const [oldSumOfData,setOldSumOfData]=useState([]);
   const URL = 'http://localhost:3002/api/wallet';
   // const URL = 'http';
   function handleAddClick(){
     setIsAddClicked(!isAddClicked);
   }
   function handleDelete(){
-    console.log('delete');
-    setSpendings(spendings);
+    setOldSpendings(spendings);
+    setOldSumOfData(sumOfData);
   }
   useEffect(()=>{
     fetch(URL)
     .then(res=>res.json())
     .then(data=>setSpendings(data))
-  },[spendings]);
+  },[oldSpendings]);
   useEffect(()=>{
     fetch(URL+'/sum')
     .then(res=>res.json())
     .then(data=>setSumOfData(data))
-  },[spendings]);
+  },[oldSumOfData]);
 
   if(isAddClicked){
     return <AddSpending URL={URL}/>

@@ -31,6 +31,7 @@ app.get('/api/wallet/sum',(req,res)=>{
 app.post('/api/wallet',(req,res)=>{
     console.log('Updating...');
     const body = req.body
+    console.log(body)
     client.query(`insert into current_month_spending (category,amount,description,date) values ('${body.category}',${body.amount},'${body.description}','${body.date}');`)
     .then(result=>{
         console.log('Update success');

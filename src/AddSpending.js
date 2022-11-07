@@ -27,7 +27,7 @@ const AddSpending=(props)=>{
         })
     }
     return (
-        <form>
+        <form onSubmit={handleClick}>
             <select name="category" required onChange={handleChange}>
                 <option value=''>Category</option>
                 <option value='monthly bill'>Monthly Bill</option>
@@ -47,7 +47,7 @@ const AddSpending=(props)=>{
                 <option value='monthly'>Monthly</option>
             </select>
             <input name="date" type="date" onChange={handleChange} required/>
-            <button onClick={handleClick}>Add</button>
+            <input type="submit"/>
         </form>
     )
 }

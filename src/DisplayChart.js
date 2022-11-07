@@ -11,7 +11,7 @@ const DisplayChart = (props) => {
             data={dataArray}
             label={(data)=>data.dataEntry.value!==0?data.dataEntry.title:''}
             viewBoxSize={[500,500]}
-            center={[300,50]}
+            center={[300,90]}
             labelStyle={{
                 fontSize:'9px',
             }}
