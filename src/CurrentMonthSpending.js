@@ -1,6 +1,6 @@
 import React from "react"
 import EachSpending from "./EachSpending"
-import './stylesheet.css';
+
 const CurrentMonthSpending=(props)=>{
     return(
         <table className="spending-header">

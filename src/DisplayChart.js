@@ -14,6 +14,10 @@ const DisplayChart = (props) => {
             center={[300,90]}
             labelStyle={{
                 fontSize:'9px',
+                fill: 'white'
+            }}
+            style={{
+                margin:'auto'
             }}
             radius={42}
             labelPosition={112}

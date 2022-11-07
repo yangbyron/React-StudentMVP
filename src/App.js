@@ -3,6 +3,7 @@ import AddSpending from "./AddSpending";
 import CurrentMonthSpending from "./CurrentMonthSpending";
 import DisplayChart from "./DisplayChart";
 import Tab from "./Tab";
+import './stylesheet.css';
 
 function App() {
   const [spendings,setSpendings]=useState([]);
@@ -36,8 +37,10 @@ function App() {
     return (
       <div className="App">
         <Tab/>
+        <div className="wrapper">
         <CurrentMonthSpending spendings={spendings} deleteSpending={handleDelete}/>
         <button className="addButton" onClick={handleAddClick}>Add Spending</button>
+        </div>
         <DisplayChart sumOfData={sumOfData}/>
       </div>
     );

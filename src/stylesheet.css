@@ -1,6 +1,25 @@
+body {
+    background-color: black;
+    color: white;
+    font-size: larger;
+}
+
 .spending-header,
 th,
 td {
     text-align: center;
-    border: 1px solid black
+    border: 1px solid white;
+    margin: auto;
+}
+
+.App {
+    text-align: center;
+}
+
+.addButton {
+    width: 100%;
+}
+
+.wrapper {
+    display: inline-block;
 }
